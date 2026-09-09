@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Afeef Khan — Portfolio</title>
+<link rel="preconnect" href="https://api.fontshare.com" crossorigin>
+<!-- Satoshi Variable isn't actually distributed via Google Fonts — its real home is Fontshare.
+     This pulls the same variable font under that name. -->
+<link href="https://api.fontshare.com/v2/css?f[]=satoshi@1,2,300,301,400,401,500,501,700,701,900,901&display=swap" rel="stylesheet">
+<style>
+/* =========================================================
+   AFEEF KHAN PORTFOLIO — PROTOTYPE
+   How to customize:
+   1. Scroll to the PROJECTS array in the <script> tag.
+      Each object is one grid tile.
+   2. Replace "img: null" placeholders with your own artwork:
+        img: "path/to/your/file.jpg"   (or a data: URI)
+   3. type can be "single" (one image), "gallery" (scrollable
+      set of images, like the Imli Pop example) or "link"
+      (clicking sends the visitor straight to an outside URL —
+      use this for Comics/Album Covers that live elsewhere).
+   4. CATEGORIES array controls the sidebar order/labels.
+   5. The grid is a true masonry layout (CSS columns) — real
+      images just use their own natural proportions, so any
+      shape/orientation artwork drops in and looks right.
+      Placeholder tiles get a rotating set of ratios (RATIOS)
+      purely so the demo reads as an adaptive collage.
+   ========================================================= */
+
+:root{
+  --ink:#18120d;
+  --paper:#faf1de;
+  --paper-dim:#f0e4c9;
+  --sun-red:#ff4b2e;
+  --sun-orange:#ff8a3d;
+  --gallery:#000000;
+  --line: 3px solid var(--ink);
+  --hero-gif: url("assets/template-1.gif");
+  --edge-img: url("assets/template-2.png");
+}
+
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto;}
+  *{animation-duration:0.001s !important; transition-duration:0.001s !important;}
+}
+body{
+  margin:0;
+  font-family:'Satoshi Variable','Satoshi',sans-serif;
+  color:var(--ink);
+  background:var(--paper);
+}
+a{color:inherit;}
+img{display:block; max-width:100%;}
+button{font-family:inherit;}
+.sr-only{
+  position:absolute; width:1px; height:1px; padding:0; margin:-1px;
+  overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0;
+}
+
+/* ---------- HERO ---------- */
+#hero{
+  position:relative;
+  height:100vh;
+  background-image:var(--hero-gif);
+  background-size:cover;
+  background-position:center 4%;
+  overflow:hidden;
+}
+@media (max-width:820px){
+  #hero{
+    height:auto;
+    aspect-ratio:1100/659;
+    background-size:cover;
+    background-position:top center;
+  }
+}
+
+/* ---------- APP (sidebar + gallery) ---------- */
+#app{
+  display:flex;
+  min-height:100vh;
+}
+#sidebar{
+  width:280px;
+  flex-shrink:0;
+  padding:36px 40px 36px 28px;
+  position:sticky;
+  top:0;
+  height:100dvh;
+  overflow:hidden;
+  display:flex;
+  flex-direction:column;
+  background-color:var(--paper);
+  background-image:var(--edge-img);
+  background-repeat:no-repeat;
+  background-position:right top;
+  background-size:70px 100%;
+}
+.brand{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:36px;
+}
+ .brand img.logo{
+  width:88px;
+  height:auto;
+}
+.brand-trigger{
+  all:unset;
+  display:block;
+  padding:0;
+  margin:0;
+  border:0;
+  background:transparent;
+  line-height:0;
+  cursor:pointer;
+}
+.brand-trigger:focus-visible{
+  outline:2px solid var(--ink);
+  outline-offset:5px;
+}
+
+nav.cats{display:flex; flex-direction:column; gap:2px;}
+nav.cats button{
+  all:unset;
+  cursor:pointer;
+  position:relative;
+  font-size:16.5px;
+  font-weight:500;
+  padding:9px 2px;
+  color:var(--ink);
+  width:fit-content;
+}
+nav.cats button .mark{
+  position:absolute;
+  left:0; right:0; bottom:5px;
+  height:2px;
+  background:var(--ink);
+  transform:scaleX(0);
+  transform-origin:left;
+  opacity:0;
+  transition:transform .25s ease, opacity .25s ease;
+}
+nav.cats button:hover .mark{transform:scaleX(1); opacity:0.28;}
+nav.cats button[aria-current="true"] .mark{
+  transform:scaleX(1);
+  opacity:0.6;
+}
+nav.cats button[aria-current="true"]{font-weight:700;}
+
+.sidebar-foot{margin-top:auto; padding-top:32px;}
+.sidebar-foot a{
+  display:inline-flex; align-items:center; gap:8px;
+  text-decoration:none; font-weight:500; font-size:13.5px;
+}
+.sidebar-foot .copy{margin-top:14px; font-size:11.5px; opacity:0.55;}
+
+#menu-toggle{display:none;}
+
+/* gallery — true masonry via CSS columns so tiles keep natural proportions */
+#gallery{
+  flex:1;
+  min-width:0;
+  padding:0 0 40px 0;
+  background:var(--gallery);
+}
+.grid{
+  position:relative;
+}
+.tile{
+  position:absolute;
+  overflow:hidden;
+  cursor:pointer;
+  background:#111;
+  opacity:0;
+  animation:fadeIn .4s ease forwards;
+  transition:left .25s ease, top .25s ease, width .25s ease;
+}
+.grid.reflow .tile{animation:fadeIn .35s ease forwards;}
+@keyframes fadeIn{ to{opacity:1;} }
+.tile img{
+  width:100%; height:auto; display:block;
+  transition:transform .35s ease;
+}
+.tile .ph{
+  display:flex; align-items:center; justify-content:center;
+  text-align:center;
+  padding:16px;
+  font-size:13px;
+  font-weight:600;
+  color:var(--paper);
+  opacity:0.45;
+  background-image:
+    repeating-linear-gradient(45deg, rgba(255,255,255,0.06) 0 2px, transparent 2px 14px);
+}
+.tile:hover img, .tile:hover .ph{transform:scale(1.05) rotate(-0.5deg);}
+.tile .tag{
+  position:absolute; top:10px; right:10px;
+  background:var(--ink); color:var(--paper);
+  font-size:11px; font-weight:700; letter-spacing:0.3px;
+  padding:4px 8px; border-radius:3px;
+  opacity:0; transform:translateY(-6px);
+  transition:all .2s ease;
+}
+.tile:hover .tag{opacity:1; transform:translateY(0);}
+.tile .info{
+  position:absolute; left:0; right:0; bottom:0;
+  padding:12px 14px 10px;
+  background:linear-gradient(0deg, rgba(24,18,13,0.85), transparent);
+  color:#fff;
+  transform:translateY(100%);
+  transition:transform .25s ease;
+}
+.tile:hover .info{transform:translateY(0);}
+.tile .info .t{font-weight:700; font-size:14px;}
+.tile .info .c{font-size:11px; opacity:0.8;}
+
+/* ---------- MODAL ---------- */
+.modal-overlay{
+  position:fixed; inset:0;
+  background:rgba(15,10,6,0.82);
+  display:flex; align-items:center; justify-content:center;
+  padding:28px;
+  z-index:60;
+  opacity:0; pointer-events:none;
+  transition:opacity .2s ease;
+}
+.modal-overlay.open{opacity:1; pointer-events:auto;}
+.modal{
+  position:relative;
+  background:#000;
+  width:min(920px, 100%);
+  max-height:88vh;
+  display:flex;
+  flex-direction:column;
+}
+.modal-close{
+  all:unset; cursor:pointer;
+  position:absolute; top:14px; right:14px; z-index:5;
+  width:36px;height:36px;
+  border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  background:rgba(0,0,0,0.55);
+  color:#fff;
+  backdrop-filter:blur(2px);
+  transition:background .2s ease;
+}
+.modal-close:hover{background:var(--sun-red);}
+.modal-body{
+  overflow-y:auto;
+  padding:0;
+  background:#000;
+}
+.modal-body img{width:100%; display:block;}
+.modal-blurb{padding:16px 20px; font-size:13.5px; line-height:1.6; color:var(--paper); opacity:0.75; background:#000;}
+
+/* ---------- MOBILE ---------- */
+@media (max-width:820px){
+  #app{flex-direction:column;}
+  #sidebar{
+    width:100%; height:auto; position:sticky; top:0; z-index:40;
+    padding:14px 20px;
+    flex-direction:row; align-items:center; justify-content:space-between;
+    flex-wrap:wrap;
+    overflow:visible;
+    background-image:none;
+    border-bottom:var(--line);
+  }
+  .brand{margin-bottom:0; width:100%;}
+  nav.cats{
+    display:none;
+    width:100%;
+    order:3;
+    padding-top:14px;
+    border-top:2px solid var(--ink);
+    margin-top:14px;
+  }
+  nav.cats.show{display:flex;}
+  .sidebar-foot{display:none;}
+  #menu-toggle{
+    display:flex; align-items:center; justify-content:center;
+    width:38px; height:38px;
+    border:var(--line); background:var(--paper);
+    cursor:pointer;
+  }
+}
+</style>
+</head>
+<body>
+
+<section id="hero"></section>
+
+<div id="app">
+  <aside id="sidebar">
+    <div class="brand">
+      <button class="brand-trigger" id="aboutTrigger" aria-label="Open About Afeef"> 
+        <img class="logo" src="assets/template-3.png" alt="Afeef Khan">
+      </button>
+      <button id="menu-toggle" aria-label="Toggle menu">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
+    </div>
+    <nav class="cats" id="cats"></nav>
+    <div class="sidebar-foot">
+      <a href="https://www.instagram.com/cumcurator/" target="_blank" rel="noopener" aria-label="Instagram">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="3.6"/><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="1.8"/></svg>
+        Instagram
+      </a>
+      <p class="copy">© All rights reserved</p>
+    </div>
+  </aside>
+
+  <main id="gallery">
+    <h2 id="catTitle" class="sr-only">Illustrations</h2>
+    <div class="grid" id="grid"></div>
+  </main>
+</div>
+
+<div class="modal-overlay" id="aboutOverlay">
+  <div class="modal about-modal" role="dialog" aria-modal="true" aria-labelledby="aboutModalTitle">
+    <button class="modal-close" id="aboutClose" aria-label="Close">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 5l14 14M19 5L5 19"/></svg>
+    </button>
+    <div class="about-content">
+      <div class="about-kicker">About</div>
+      <h2 id="aboutModalTitle"></h2>
+      <p id="aboutModalText"></p>
+      <a id="aboutInstagram" href="https://www.instagram.com/cumcurator/" target="_blank" rel="noopener">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="3.6"/><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="1.8"/></svg>
+        <span id="aboutInstagramLabel">Instagram</span>
+      </a>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal" role="dialog" aria-modal="true">
+    <h3 id="modalTitle" class="sr-only">Title</h3>
+    <span id="modalCat" class="sr-only">Category</span>
+    <button class="modal-close" id="modalClose" aria-label="Close">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 5l14 14M19 5L5 19"/></svg>
+    </button>
+    <div class="modal-body" id="modalBody"></div>
+  </div>
+</div>
+
+<script>
+/* ---------------- CONFIG ---------------- */
+// __CATEGORIES_START__
+const CATEGORIES = [
+  "Illustrations",
+  "Comics",
+  "Branding Projects",
+  "Poster Wall",
+  "Album Covers",
+  "Murals/Signages",
+  "About"
+];
+// __CATEGORIES_END__
+
+// __SITE_CONFIG_START__
+const SITE_CONFIG = {
+  "instagram": "https://www.instagram.com/cumcurator/",
+  "aboutTitle": "About Afeef",
+  "aboutText": "Hi, I’m Afeef Khan. Welcome to my portfolio — a place for illustrations, comics, branding, posters, album artwork, and murals.",
+  "aboutLinkLabel": "Instagram",
+  "heroImage": "assets/hero.gif",
+  "paper": "#faf1de",
+  "ink": "#18120d",
+  "accent": "#ff4b2e",
+  "gallery": "#000000"
+};
+// __SITE_CONFIG_END__
+
+// Real image, embedded from your uploaded Imli Pop slide.
+const PROJECT_SAMPLE = "assets/project-8-cover.jpg";
+
+// Ratios cycled through for placeholder tiles only, so the masonry
+// demo reads as adaptive even before real artwork is dropped in.
+const RATIOS = ["3/4","1/1","4/5","5/4","2/3","4/3","9/16"];
+
+/* Each project = one grid tile.
+   type: "single" | "gallery" | "link"
+   img:   cover image shown in the grid (required, use your own file/data URI)
+   images: [] only used when type === "gallery" — visitor scrolls through these in the modal
+   link:  only used when type === "link" — opens in a new tab instead of the modal
+   blurb: short caption shown under the modal (optional) */
+// __PROJECTS_START__
+const PROJECTS = [
+  {
+    "id": 1,
+    "title": "Late Night Snack",
+    "category": "Illustrations",
+    "type": "single",
+    "img": "assets/project-1-cover.png"
+  },
+  {
+    "id": 2,
+    "title": "Character Sketches",
+    "category": "Illustrations",
+    "type": "gallery",
+    "img": "assets/project-2-cover.png",
+    "images": [
+      null,
+      null,
+      null
+    ],
+    "blurb": "A set of character studies — swap these three placeholders for your own pages."
+  },
+  {
+    "id": 3,
+    "title": "Editorial Spot",
+    "category": "Illustrations",
+    "type": "single",
+    "img": "assets/project-3-cover.png"
+  },
+  {
+    "id": 4,
+    "title": "Sticker Pack",
+    "category": "Illustrations",
+    "type": "single",
+    "img": "assets/project-4-cover.png"
+  },
+  {
+    "id": 5,
+    "title": "Weekend Strip #12",
+    "category": "Comics",
+    "type": "gallery",
+    "img": null,
+    "images": [
+      null,
+      null,
+      null,
+      null
+    ],
+    "blurb": "Multi-panel strip — each image becomes one scrollable panel here."
+  },
+  {
+    "id": 6,
+    "title": "The Mask",
+    "category": "Comics",
+    "type": "single",
+    "img": null
+  },
+  {
+    "id": 7,
+    "title": "Read the full comic",
+    "category": "Comics",
+    "type": "link",
+    "img": null,
+    "link": "https://instagram.com"
+  },
+  {
+    "id": 8,
+    "title": "Imli Pop — Local Ferment Co.",
+    "category": "Branding Projects",
+    "type": "gallery",
+    "img": "assets/project-8-cover.jpg",
+    "images": [
+      "assets/project-8-cover.jpg",
+      "assets/project-8-cover.jpg",
+      "assets/project-8-cover.jpg"
+    ],
+    "blurb": "Packaging + campaign art for Local Ferment Co.'s shrub soda. (Demo repeats one image three times — replace with the rest of the campaign.)"
+  },
+  {
+    "id": 9,
+    "title": "Studio Sorted Identity",
+    "category": "Branding Projects",
+    "type": "single",
+    "img": null
+  },
+  {
+    "id": 10,
+    "title": "Cumcert Boombox Co.",
+    "category": "Branding Projects",
+    "type": "single",
+    "img": null
+  },
+  {
+    "id": 11,
+    "title": "Monsoon Poster",
+    "category": "Poster Wall",
+    "type": "single",
+    "img": null
+  },
+  {
+    "id": 12,
+    "title": "Gig Poster — The Loop",
+    "category": "Poster Wall",
+    "type": "single",
+    "img": null
+  },
+  {
+    "id": 13,
+    "title": "City Series 03",
+    "category": "Poster Wall",
+    "type": "single",
+    "img": null
+  },
+  {
+    "id": 14,
+    "title": "Listen on Spotify",
+    "category": "Album Covers",
+    "type": "link",
+    "img": null,
+    "link": "https://open.spotify.com"
+  },
+  {
+    "id": 15,
+    "title": "EP Cover — Static",
+    "category": "Album Covers",
+    "type": "single",
+    "img": null
+  },
+  {
+    "id": 16,
+    "title": "Wall at Church Street",
+    "category": "Murals/Signages",
+    "type": "gallery",
+    "img": null,
+    "images": [
+      null,
+      null
+    ],
+    "blurb": "Before/after shots of the mural — add your own photos here."
+  },
+  {
+    "id": 17,
+    "title": "Café Signage Set",
+    "category": "Murals/Signages",
+    "type": "single",
+    "img": null
+  }
+];
+// __PROJECTS_END__
+
+/* ---------------- RENDER ---------------- */
+const catsEl = document.getElementById('cats');
+const gridEl = document.getElementById('grid');
+const catTitle = document.getElementById('catTitle');
+const aboutOverlay = document.getElementById('aboutOverlay');
+
+let activeCategory = "Illustrations";
+
+function applySiteConfig(){
+  document.getElementById('aboutModalTitle').textContent = SITE_CONFIG.aboutTitle || 'About Afeef';
+  document.getElementById('aboutModalText').textContent = SITE_CONFIG.aboutText || '';
+  document.getElementById('aboutInstagramLabel').textContent = SITE_CONFIG.aboutLinkLabel || 'Instagram';
+  document.getElementById('aboutInstagram').href = SITE_CONFIG.instagram || 'https://www.instagram.com/cumcurator/';
+  if(SITE_CONFIG.heroImage){
+    document.getElementById('hero').style.backgroundImage = `url("${SITE_CONFIG.heroImage}")`;
+  }
+}
+function openAbout(){
+  applySiteConfig();
+  aboutOverlay.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeAbout(){
+  aboutOverlay.classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.getElementById('aboutTrigger').addEventListener('click', openAbout);
+document.getElementById('aboutClose').addEventListener('click', closeAbout);
+aboutOverlay.addEventListener('click', e => { if(e.target === aboutOverlay) closeAbout(); });
+
+function placeholderTile(label, ratio){
+  return `<div class="ph" style="aspect-ratio:${ratio};">${label}</div>`;
+}
+
+function renderNav(){
+  catsEl.innerHTML = CATEGORIES.map(c => `
+    <button data-cat="${c}" aria-current="${c===activeCategory}">
+      ${c}<span class="mark"></span>
+    </button>`).join('');
+  catsEl.querySelectorAll('button').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      const category = btn.dataset.cat;
+      document.getElementById('cats').classList.remove('show');
+      if(category === 'About'){
+        openAbout();
+        return;
+      }
+      activeCategory = category;
+      renderNav();
+      renderGrid();
+    });
+  });
+}
+
+/* True masonry: pack tiles into the shortest column so the feed
+   fills edge-to-edge with no empty trailing columns, regardless
+   of how many items or what shapes they are. */
+function columnsForWidth(w){
+  if(w>=1400) return 5;
+  if(w>=1000) return 4;
+  if(w>=640) return 3;
+  return 2;
+}
+function layoutMasonry(){
+  const containerWidth = gridEl.clientWidth;
+  if(!containerWidth) return;
+  const columns = columnsForWidth(containerWidth);
+  const gap = 3;
+  const colWidth = (containerWidth - gap*(columns-1)) / columns;
+  const colHeights = new Array(columns).fill(0);
+  const tiles = Array.from(gridEl.children);
+  tiles.forEach(tile=>{
+    tile.style.width = colWidth + 'px';
+    const minH = Math.min(...colHeights);
+    const colIndex = colHeights.indexOf(minH);
+    tile.style.left = (colIndex*(colWidth+gap)) + 'px';
+    tile.style.top = minH + 'px';
+    const h = tile.offsetHeight;
+    colHeights[colIndex] = minH + h + gap;
+  });
+  gridEl.style.height = Math.max(0, ...colHeights) + 'px';
+}
+function imagesReady(container){
+  const imgs = Array.from(container.querySelectorAll('img'));
+  return Promise.all(imgs.map(img => img.complete ? Promise.resolve() :
+    new Promise(res => { img.onload = img.onerror = res; })));
+}
+let resizeTimer;
+window.addEventListener('resize', ()=>{
+  clearTimeout(resizeTimer);
+  resizeTimer = setTimeout(layoutMasonry, 120);
+});
+
+function renderGrid(){
+  catTitle.textContent = activeCategory;
+  const items = PROJECTS.filter(p => p.category === activeCategory);
+
+  gridEl.classList.remove('reflow'); void gridEl.offsetWidth; gridEl.classList.add('reflow');
+
+  gridEl.innerHTML = items.map((p,i)=>{
+    const ratio = RATIOS[i % RATIOS.length];
+    const cover = p.img ? `<img src="${p.img}" alt="${p.title}">` : placeholderTile(p.title, ratio);
+    const tagLabel = p.type === 'link' ? 'opens ↗' : (p.type === 'gallery' ? 'view project' : 'view');
+    return `
+      <div class="tile" data-id="${p.id}" style="animation-delay:${i*0.03}s">
+        ${cover}
+        <span class="tag">${tagLabel}</span>
+        <div class="info">
+          <div class="t">${p.title}</div>
+          <div class="c">${p.category}</div>
+        </div>
+      </div>`;
+  }).join('');
+
+  gridEl.querySelectorAll('.tile').forEach(tile=>{
+    tile.addEventListener('click', ()=>{
+      const p = PROJECTS.find(x => x.id == tile.dataset.id);
+      if(p.type === 'link'){
+        window.open(p.link, '_blank', 'noopener');
+      } else {
+        openModal(p);
+      }
+    });
+  });
+
+  // rough layout immediately (placeholders have known ratios), then
+  // an accurate re-layout once real images finish loading.
+  layoutMasonry();
+  imagesReady(gridEl).then(layoutMasonry);
+}
+
+/* ---------------- MODAL ---------------- */
+const overlay = document.getElementById('modalOverlay');
+const modalTitle = document.getElementById('modalTitle');
+const modalCat = document.getElementById('modalCat');
+const modalBody = document.getElementById('modalBody');
+
+function openModal(p){
+  modalTitle.textContent = p.title;
+  modalCat.textContent = p.category;
+
+  let body = '';
+  if(p.type === 'gallery'){
+    body = (p.images && p.images.length ? p.images : [p.img]).map(src =>
+      src ? `<img src="${src}" alt="${p.title}">`
+          : `<div class="ph" style="aspect-ratio:16/10;">Add project image here</div>`
+    ).join('');
+  } else {
+    body = p.img ? `<img src="${p.img}" alt="${p.title}">`
+                 : `<div class="ph" style="aspect-ratio:16/10;">Add full-size artwork here</div>`;
+  }
+  if(p.blurb){ body += `<div class="modal-blurb">${p.blurb}</div>`; }
+
+  modalBody.innerHTML = body;
+  overlay.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeModal(){
+  overlay.classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.getElementById('modalClose').addEventListener('click', closeModal);
+overlay.addEventListener('click', e => { if(e.target === overlay) closeModal(); });
+document.addEventListener('keydown', e => {
+  if(e.key === 'Escape'){
+    closeModal();
+    closeAbout();
+  }
+});
+
+/* ---------------- MOBILE MENU ---------------- */
+document.getElementById('menu-toggle').addEventListener('click', ()=>{
+  document.getElementById('cats').classList.toggle('show');
+});
+
+applySiteConfig();
+renderNav();
+renderGrid();
+</script>
+</body>
+</html>
