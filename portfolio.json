@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "generatedAt": "2026-09-09T07:58:29.206Z",
+  "generatedAt": "2026-09-09T08:23:54.473Z",
   "settings": {
     "instagram": "https://www.instagram.com/cumcurator/",
     "aboutTitle": "About Afeef",
     "aboutText": "Hi, I’m Afeef Khan. Welcome to my portfolio — a place for illustrations, comics, branding, posters, album artwork, and murals.",
     "aboutLinkLabel": "Instagram",
-    "heroImage": "assets/hero.gif",
+    "heroImage": "",
     "paper": "#faf1de",
     "ink": "#18120d",
     "accent": "#ff4b2e",
@@ -27,14 +27,14 @@
       "title": "Late Night Snack",
       "category": "Illustrations",
       "type": "single",
-      "img": "assets/project-1-cover.png"
+      "img": "assets/project-1-cover.webp"
     },
     {
       "id": 2,
       "title": "Character Sketches",
       "category": "Illustrations",
       "type": "gallery",
-      "img": "assets/project-2-cover.png",
+      "img": "assets/project-2-cover.webp",
       "images": [
         null,
         null,
@@ -47,14 +47,14 @@
       "title": "Editorial Spot",
       "category": "Illustrations",
       "type": "single",
-      "img": "assets/project-3-cover.png"
+      "img": "assets/project-3-cover.webp"
     },
     {
       "id": 4,
       "title": "Sticker Pack",
       "category": "Illustrations",
       "type": "single",
-      "img": "assets/project-4-cover.png"
+      "img": "assets/project-4-cover.webp"
     },
     {
       "id": 5,
