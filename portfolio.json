@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "generatedAt": "2026-09-09T08:23:54.473Z",
+  "generatedAt": "2026-09-23T05:27:57.649Z",
   "settings": {
     "instagram": "https://www.instagram.com/cumcurator/",
     "aboutTitle": "About Afeef",
     "aboutText": "Hi, I’m Afeef Khan. Welcome to my portfolio — a place for illustrations, comics, branding, posters, album artwork, and murals.",
     "aboutLinkLabel": "Instagram",
-    "heroImage": "",
+    "heroImage": "assets/hero.gif",
     "paper": "#faf1de",
     "ink": "#18120d",
     "accent": "#ff4b2e",
@@ -22,40 +22,6 @@
     "About"
   ],
   "projects": [
-    {
-      "id": 1,
-      "title": "Late Night Snack",
-      "category": "Illustrations",
-      "type": "single",
-      "img": "assets/project-1-cover.webp"
-    },
-    {
-      "id": 2,
-      "title": "Character Sketches",
-      "category": "Illustrations",
-      "type": "gallery",
-      "img": "assets/project-2-cover.webp",
-      "images": [
-        null,
-        null,
-        null
-      ],
-      "blurb": "A set of character studies — swap these three placeholders for your own pages."
-    },
-    {
-      "id": 3,
-      "title": "Editorial Spot",
-      "category": "Illustrations",
-      "type": "single",
-      "img": "assets/project-3-cover.webp"
-    },
-    {
-      "id": 4,
-      "title": "Sticker Pack",
-      "category": "Illustrations",
-      "type": "single",
-      "img": "assets/project-4-cover.webp"
-    },
     {
       "id": 5,
       "title": "Weekend Strip #12",
@@ -84,19 +50,6 @@
       "type": "link",
       "img": null,
       "link": "https://instagram.com"
-    },
-    {
-      "id": 8,
-      "title": "Imli Pop — Local Ferment Co.",
-      "category": "Branding Projects",
-      "type": "gallery",
-      "img": "assets/project-8-cover.jpg",
-      "images": [
-        "assets/project-8-cover.jpg",
-        "assets/project-8-cover.jpg",
-        "assets/project-8-cover.jpg"
-      ],
-      "blurb": "Packaging + campaign art for Local Ferment Co.'s shrub soda. (Demo repeats one image three times — replace with the rest of the campaign.)"
     },
     {
       "id": 9,
@@ -166,6 +119,95 @@
       "category": "Murals/Signages",
       "type": "single",
       "img": null
+    },
+    {
+      "id": 18,
+      "title": "!!",
+      "category": "Illustrations",
+      "type": "single",
+      "img": "assets/project-18-cover.webp"
+    },
+    {
+      "id": 19,
+      "title": "Shoot!",
+      "category": "Illustrations",
+      "type": "single",
+      "img": "assets/project-19-cover.webp"
+    },
+    {
+      "id": 20,
+      "title": "me",
+      "category": "Illustrations",
+      "type": "single",
+      "img": "assets/project-20-cover.webp"
+    },
+    {
+      "id": 21,
+      "title": "small town shenanigans",
+      "category": "Illustrations",
+      "type": "single",
+      "img": "assets/project-21-cover.webp"
+    },
+    {
+      "id": 22,
+      "title": "live sketches at the metro",
+      "category": "Illustrations",
+      "type": "gallery",
+      "img": "assets/project-22-cover.webp",
+      "images": [
+        "assets/project-22-1.webp",
+        "assets/project-22-cover.webp",
+        "assets/project-22-3.webp"
+      ]
+    },
+    {
+      "id": 23,
+      "title": "ZOINKS!",
+      "category": "Illustrations",
+      "type": "single",
+      "img": "assets/project-23-cover.webp"
+    },
+    {
+      "id": 24,
+      "title": "Cherry Girl",
+      "category": "Illustrations",
+      "type": "single",
+      "img": "assets/project-24-cover.webp"
+    },
+    {
+      "id": 25,
+      "title": "MR.WESTSIDEGUNS",
+      "category": "Illustrations",
+      "type": "single",
+      "img": "assets/project-25-cover.webp"
+    },
+    {
+      "id": 26,
+      "title": "BUNNY BOY GAME WALK",
+      "category": "Illustrations",
+      "type": "single",
+      "img": "assets/project-26-cover.gif"
+    },
+    {
+      "id": 27,
+      "title": "Bass Demon",
+      "category": "Illustrations",
+      "type": "single",
+      "img": "assets/project-27-cover.webp"
+    },
+    {
+      "id": 28,
+      "title": "EID MEOWBARAK 2026",
+      "category": "Illustrations",
+      "type": "single",
+      "img": "assets/project-28-cover.gif"
+    },
+    {
+      "id": 29,
+      "title": "POSTCARD",
+      "category": "Illustrations",
+      "type": "single",
+      "img": "assets/project-29-cover.webp"
     }
   ]
 }
