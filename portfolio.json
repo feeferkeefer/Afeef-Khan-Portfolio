@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-09-23T05:27:57.649Z",
+  "generatedAt": "2026-09-23T06:07:20.363Z",
   "settings": {
     "instagram": "https://www.instagram.com/cumcurator/",
     "aboutTitle": "About Afeef",
@@ -121,43 +121,64 @@
       "img": null
     },
     {
-      "id": 18,
-      "title": "!!",
+      "id": 28,
+      "title": "EID MEOWBARAK 2026",
       "category": "Illustrations",
       "type": "single",
-      "img": "assets/project-18-cover.webp"
-    },
-    {
-      "id": 19,
-      "title": "Shoot!",
-      "category": "Illustrations",
-      "type": "single",
-      "img": "assets/project-19-cover.webp"
-    },
-    {
-      "id": 20,
-      "title": "me",
-      "category": "Illustrations",
-      "type": "single",
-      "img": "assets/project-20-cover.webp"
+      "img": "https://raw.githubusercontent.com/feeferkeefer/Afeef-Khan-Portfolio/main/assets/project-28-cover.gif"
     },
     {
       "id": 21,
       "title": "small town shenanigans",
       "category": "Illustrations",
       "type": "single",
-      "img": "assets/project-21-cover.webp"
+      "img": "https://raw.githubusercontent.com/feeferkeefer/Afeef-Khan-Portfolio/main/assets/project-21-cover.webp"
+    },
+    {
+      "id": 19,
+      "title": "Shoot!",
+      "category": "Illustrations",
+      "type": "single",
+      "img": "https://raw.githubusercontent.com/feeferkeefer/Afeef-Khan-Portfolio/main/assets/project-19-cover.webp"
+    },
+    {
+      "id": 26,
+      "title": "BUNNY BOY GAME WALK",
+      "category": "Illustrations",
+      "type": "single",
+      "img": "https://raw.githubusercontent.com/feeferkeefer/Afeef-Khan-Portfolio/main/assets/project-26-cover.gif"
+    },
+    {
+      "id": 18,
+      "title": "!!",
+      "category": "Illustrations",
+      "type": "single",
+      "img": "https://raw.githubusercontent.com/feeferkeefer/Afeef-Khan-Portfolio/main/assets/project-18-cover.webp"
+    },
+    {
+      "id": 30,
+      "title": "3",
+      "category": "Illustrations",
+      "type": "single",
+      "img": "assets/project-30-cover.gif"
+    },
+    {
+      "id": 20,
+      "title": "me",
+      "category": "Illustrations",
+      "type": "single",
+      "img": "https://raw.githubusercontent.com/feeferkeefer/Afeef-Khan-Portfolio/main/assets/project-20-cover.webp"
     },
     {
       "id": 22,
       "title": "live sketches at the metro",
       "category": "Illustrations",
       "type": "gallery",
-      "img": "assets/project-22-cover.webp",
+      "img": "https://raw.githubusercontent.com/feeferkeefer/Afeef-Khan-Portfolio/main/assets/project-22-cover.webp",
       "images": [
-        "assets/project-22-1.webp",
-        "assets/project-22-cover.webp",
-        "assets/project-22-3.webp"
+        "https://raw.githubusercontent.com/feeferkeefer/Afeef-Khan-Portfolio/main/assets/project-22-1.webp",
+        "https://raw.githubusercontent.com/feeferkeefer/Afeef-Khan-Portfolio/main/assets/project-22-cover.webp",
+        "https://raw.githubusercontent.com/feeferkeefer/Afeef-Khan-Portfolio/main/assets/project-22-3.webp"
       ]
     },
     {
@@ -165,49 +186,42 @@
       "title": "ZOINKS!",
       "category": "Illustrations",
       "type": "single",
-      "img": "assets/project-23-cover.webp"
+      "img": "https://raw.githubusercontent.com/feeferkeefer/Afeef-Khan-Portfolio/main/assets/project-23-cover.webp"
     },
     {
       "id": 24,
       "title": "Cherry Girl",
       "category": "Illustrations",
       "type": "single",
-      "img": "assets/project-24-cover.webp"
+      "img": "https://raw.githubusercontent.com/feeferkeefer/Afeef-Khan-Portfolio/main/assets/project-24-cover.webp"
     },
     {
       "id": 25,
       "title": "MR.WESTSIDEGUNS",
       "category": "Illustrations",
       "type": "single",
-      "img": "assets/project-25-cover.webp"
-    },
-    {
-      "id": 26,
-      "title": "BUNNY BOY GAME WALK",
-      "category": "Illustrations",
-      "type": "single",
-      "img": "assets/project-26-cover.gif"
-    },
-    {
-      "id": 27,
-      "title": "Bass Demon",
-      "category": "Illustrations",
-      "type": "single",
-      "img": "assets/project-27-cover.webp"
-    },
-    {
-      "id": 28,
-      "title": "EID MEOWBARAK 2026",
-      "category": "Illustrations",
-      "type": "single",
-      "img": "assets/project-28-cover.gif"
+      "img": "https://raw.githubusercontent.com/feeferkeefer/Afeef-Khan-Portfolio/main/assets/project-25-cover.webp"
     },
     {
       "id": 29,
       "title": "POSTCARD",
       "category": "Illustrations",
       "type": "single",
-      "img": "assets/project-29-cover.webp"
+      "img": "https://raw.githubusercontent.com/feeferkeefer/Afeef-Khan-Portfolio/main/assets/project-29-cover.webp"
+    },
+    {
+      "id": 27,
+      "title": "Bass Demon",
+      "category": "Illustrations",
+      "type": "single",
+      "img": "https://raw.githubusercontent.com/feeferkeefer/Afeef-Khan-Portfolio/main/assets/project-27-cover.webp"
+    },
+    {
+      "id": 31,
+      "title": "Anim 1",
+      "category": "Illustrations",
+      "type": "single",
+      "img": "assets/project-31-cover.gif"
     }
   ]
 }
