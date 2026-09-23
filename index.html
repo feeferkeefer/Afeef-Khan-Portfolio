@@ -37,7 +37,7 @@
   --gallery:#000000;
   --line: 3px solid var(--ink);
   --hero-gif: url("assets/template-1.gif");
-  --edge-img: url("assets/template-2.webp");
+  --edge-img: url("assets/template-2.png");
 }
 
 *{box-sizing:border-box;}
@@ -254,8 +254,19 @@ nav.cats button[aria-current="true"]{font-weight:700;}
   overflow-y:auto;
   padding:0;
   background:#000;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
 }
-.modal-body img{width:100%; display:block;}
+.modal-body img{
+  display:block;
+  width:auto;
+  height:auto;
+  max-width:100%;
+  max-height:78vh;
+  object-fit:contain;
+  margin:0 auto;
+}
 .modal-blurb{padding:16px 20px; font-size:13.5px; line-height:1.6; color:var(--paper); opacity:0.75; background:#000;}
 
 /* ---------- MOBILE ---------- */
@@ -298,7 +309,7 @@ nav.cats button[aria-current="true"]{font-weight:700;}
   <aside id="sidebar">
     <div class="brand">
       <button class="brand-trigger" id="aboutTrigger" aria-label="Open About Afeef"> 
-        <img class="logo" src="assets/template-3.webp" alt="Afeef Khan">
+        <img class="logo" src="assets/template-3.png" alt="Afeef Khan">
       </button>
       <button id="menu-toggle" aria-label="Toggle menu">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
@@ -490,43 +501,64 @@ const PROJECTS = [
     "img": null
   },
   {
-    "id": 18,
-    "title": "!!",
+    "id": 28,
+    "title": "EID MEOWBARAK 2026",
     "category": "Illustrations",
     "type": "single",
-    "img": "assets/project-18-cover.webp"
-  },
-  {
-    "id": 19,
-    "title": "Shoot!",
-    "category": "Illustrations",
-    "type": "single",
-    "img": "assets/project-19-cover.webp"
-  },
-  {
-    "id": 20,
-    "title": "me",
-    "category": "Illustrations",
-    "type": "single",
-    "img": "assets/project-20-cover.webp"
+    "img": "https://raw.githubusercontent.com/feeferkeefer/Afeef-Khan-Portfolio/main/assets/project-28-cover.gif"
   },
   {
     "id": 21,
     "title": "small town shenanigans",
     "category": "Illustrations",
     "type": "single",
-    "img": "assets/project-21-cover.webp"
+    "img": "https://raw.githubusercontent.com/feeferkeefer/Afeef-Khan-Portfolio/main/assets/project-21-cover.webp"
+  },
+  {
+    "id": 19,
+    "title": "Shoot!",
+    "category": "Illustrations",
+    "type": "single",
+    "img": "https://raw.githubusercontent.com/feeferkeefer/Afeef-Khan-Portfolio/main/assets/project-19-cover.webp"
+  },
+  {
+    "id": 26,
+    "title": "BUNNY BOY GAME WALK",
+    "category": "Illustrations",
+    "type": "single",
+    "img": "https://raw.githubusercontent.com/feeferkeefer/Afeef-Khan-Portfolio/main/assets/project-26-cover.gif"
+  },
+  {
+    "id": 18,
+    "title": "!!",
+    "category": "Illustrations",
+    "type": "single",
+    "img": "https://raw.githubusercontent.com/feeferkeefer/Afeef-Khan-Portfolio/main/assets/project-18-cover.webp"
+  },
+  {
+    "id": 30,
+    "title": "3",
+    "category": "Illustrations",
+    "type": "single",
+    "img": "assets/project-30-cover.gif"
+  },
+  {
+    "id": 20,
+    "title": "me",
+    "category": "Illustrations",
+    "type": "single",
+    "img": "https://raw.githubusercontent.com/feeferkeefer/Afeef-Khan-Portfolio/main/assets/project-20-cover.webp"
   },
   {
     "id": 22,
     "title": "live sketches at the metro",
     "category": "Illustrations",
     "type": "gallery",
-    "img": "assets/project-22-cover.webp",
+    "img": "https://raw.githubusercontent.com/feeferkeefer/Afeef-Khan-Portfolio/main/assets/project-22-cover.webp",
     "images": [
-      "assets/project-22-1.webp",
-      "assets/project-22-cover.webp",
-      "assets/project-22-3.webp"
+      "https://raw.githubusercontent.com/feeferkeefer/Afeef-Khan-Portfolio/main/assets/project-22-1.webp",
+      "https://raw.githubusercontent.com/feeferkeefer/Afeef-Khan-Portfolio/main/assets/project-22-cover.webp",
+      "https://raw.githubusercontent.com/feeferkeefer/Afeef-Khan-Portfolio/main/assets/project-22-3.webp"
     ]
   },
   {
@@ -534,49 +566,42 @@ const PROJECTS = [
     "title": "ZOINKS!",
     "category": "Illustrations",
     "type": "single",
-    "img": "assets/project-23-cover.webp"
+    "img": "https://raw.githubusercontent.com/feeferkeefer/Afeef-Khan-Portfolio/main/assets/project-23-cover.webp"
   },
   {
     "id": 24,
     "title": "Cherry Girl",
     "category": "Illustrations",
     "type": "single",
-    "img": "assets/project-24-cover.webp"
+    "img": "https://raw.githubusercontent.com/feeferkeefer/Afeef-Khan-Portfolio/main/assets/project-24-cover.webp"
   },
   {
     "id": 25,
     "title": "MR.WESTSIDEGUNS",
     "category": "Illustrations",
     "type": "single",
-    "img": "assets/project-25-cover.webp"
-  },
-  {
-    "id": 26,
-    "title": "BUNNY BOY GAME WALK",
-    "category": "Illustrations",
-    "type": "single",
-    "img": "assets/project-26-cover.gif"
-  },
-  {
-    "id": 27,
-    "title": "Bass Demon",
-    "category": "Illustrations",
-    "type": "single",
-    "img": "assets/project-27-cover.webp"
-  },
-  {
-    "id": 28,
-    "title": "EID MEOWBARAK 2026",
-    "category": "Illustrations",
-    "type": "single",
-    "img": "assets/project-28-cover.gif"
+    "img": "https://raw.githubusercontent.com/feeferkeefer/Afeef-Khan-Portfolio/main/assets/project-25-cover.webp"
   },
   {
     "id": 29,
     "title": "POSTCARD",
     "category": "Illustrations",
     "type": "single",
-    "img": "assets/project-29-cover.webp"
+    "img": "https://raw.githubusercontent.com/feeferkeefer/Afeef-Khan-Portfolio/main/assets/project-29-cover.webp"
+  },
+  {
+    "id": 27,
+    "title": "Bass Demon",
+    "category": "Illustrations",
+    "type": "single",
+    "img": "https://raw.githubusercontent.com/feeferkeefer/Afeef-Khan-Portfolio/main/assets/project-27-cover.webp"
+  },
+  {
+    "id": 31,
+    "title": "Anim 1",
+    "category": "Illustrations",
+    "type": "single",
+    "img": "assets/project-31-cover.gif"
   }
 ];
 // __PROJECTS_END__
